@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\siswacontroller;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,9 +18,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/siswa', function () {
-    return view('daftarsiswa');
-});
+Route::get('/siswa',[siswacontroller::class,'index']);
+Route::get('/siswa/tambah',[siswacontroller::class,'tambah']);
+Route::get('/siswa/tambah/data',[siswacontroller::class,'tambahdata']);
+Route::get('/siswa/hapus/data/{id}',[siswacontroller::class,'hapusdata']);
 
 Route::get('/guru', function () {
     return view('daftarguru');
