@@ -18,21 +18,19 @@
             body {
                 font-family: 'Nunito', sans-serif;
             }
-            table {
-  font-family: arial, sans-serif;
-  border-collapse: collapse;
-  width: 100%;
+            
+            input[type=text], select {
+  width: 90%;
+  padding: 12px 20px;
+  /* margin: 8px 8px; */
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
 }
 
-td, th {
-  border: 1px solid #dddddd;
-  text-align: left;
-  padding: 8px;
-}
+form { padding: 10px}
 
-tr:nth-child(even) {
-  background-color: #dddddd;
-}            
         </style>
     </head>
     <body class="antialiased">
@@ -70,25 +68,22 @@ tr:nth-child(even) {
 
                             <div class="ml-12">
                                 <div class="mt-2 text-gray-600 dark:text-gray-400 text-sm">
-                                    <a href="{{ url('/siswa/tambah') }}">Tambah data siswa</a>
-                                    <table>
-                                        <tr>
-                                            <th>Nama</th>
-                                            <th>Kelas</th>
-                                            <th>Jns.Kelamin</th>
-                                            <th>Alamat</th>
-                                            <th>Action</th>
-                                        </tr>
-                                        @foreach($siswa as $data)
-                                        <tr>
-                                            <td>{{$data->nama}}</td>
-                                            <td>{{$data->kelas}}</td>
-                                            <td>{{$data->jns_kelamin}}</td>
-                                            <td>{{$data->alamat}}</td>
-                                            <td><a href="{{url('siswa/edit/'.$data->id.'')}}">Edit</a> | <a href="{{url('siswa/hapus/data/'.$data->id.'')}}">Hapus</a></td>
-                                        </tr>
-                                        @endforeach
-                                    </table>
+                                    <a href="{{ url('/siswa') }}">Batal edit</a>
+                                    @foreach($siswa as $data)
+                                    <form action="{{ url('/siswa/edit/data/'.$data->id.'') }}" method="POST">
+                                        @csrf
+                                        @method('PUT')
+                                        <label for="nama">Nama</label>
+                                        <input type="text" name="nama" value="{{$data->nama}}">
+                                        <label for="nama">Kelas</label>
+                                        <input type="text" name="kelas" value="{{$data->kelas}}">
+                                        <label for="nama">Jns.Kelamin</label>
+                                        <input type="text" name="jns_kelamin" value="{{$data->jns_kelamin}}">
+                                        <label for="nama">Alamat</label>
+                                        <input type="text" name="alamat" value="{{$data->alamat}}">
+                                        <input type="submit" value="Simpan data">
+                                    </form>
+                                    @endforeach
                                 </div>
                             </div>
                         </div>

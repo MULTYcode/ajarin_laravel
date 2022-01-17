@@ -20,7 +20,10 @@ Route::get('/', function () {
 
 Route::get('/siswa',[siswacontroller::class,'index']);
 Route::get('/siswa/tambah',[siswacontroller::class,'tambah']);
-Route::get('/siswa/tambah/data',[siswacontroller::class,'tambahdata']);
+Route::get('/siswa/edit/{id}',[siswacontroller::class,'edit']);
+
+Route::post('/siswa/tambah/data',[siswacontroller::class,'tambahdata']);
+Route::put('/siswa/edit/data/{id}',[siswacontroller::class,'editdata']);
 Route::get('/siswa/hapus/data/{id}',[siswacontroller::class,'hapusdata']);
 
 Route::get('/guru', function () {

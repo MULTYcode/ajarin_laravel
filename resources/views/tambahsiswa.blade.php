@@ -69,7 +69,8 @@ form { padding: 10px}
                             <div class="ml-12">
                                 <div class="mt-2 text-gray-600 dark:text-gray-400 text-sm">
                                     <a href="{{ url('/siswa') }}">Kembali</a>
-                                    <form action="{{ url('/siswa/tambah/data') }}" methode="post">
+                                    <form action="{{ url('/siswa/tambah/data') }}" method="POST">
+                                        @csrf
                                         <label for="nama">Nama</label>
                                         <input type="text" name="nama">
                                         <label for="nama">Kelas</label>

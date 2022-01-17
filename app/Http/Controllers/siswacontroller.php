@@ -16,6 +16,11 @@ class siswacontroller extends Controller
         return view('tambahsiswa');
     }
 
+    public function edit($id){
+        $siswa = DB::table('data_siswa')->where('id',$id)->get();
+        return view('editsiswa',['siswa'=>$siswa]);
+    }
+
     public function tambahdata(Request $request){
         // dd($request->all());
         DB::table('data_siswa')->insert([
@@ -24,6 +29,16 @@ class siswacontroller extends Controller
                 'jns_kelamin' => $request->jns_kelamin,
                 'alamat' => $request->alamat,
             ]);
+        return redirect('/siswa');
+    }
+
+    public function editdata(Request $request,$id){        
+        DB::table('data_siswa')->where('id',$id)->update([
+            'nama' => $request->nama,
+            'kelas' => $request->kelas,
+            'jns_kelamin' => $request->jns_kelamin,
+            'alamat' => $request->alamat
+        ]);
         return redirect('/siswa');
     }
 
